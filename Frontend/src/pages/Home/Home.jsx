@@ -26,21 +26,20 @@ const Home = () => {
       <Navbar setShowLogin={setShowLogin} />
 
       {/* Hero section */}
-{/* Hero section */}
-<section className="hero">
-  <div className="hero-content">
-    <h1>
-      Order your favorite cake here and make
-      <br /> every moment extra special!
-    </h1>
-    <p>
-      Celebrate life’s sweetest moments with a delicious cake that brings
-      joy to every occasion. Whether big or small, a cake makes happiness
-      even more irresistible—treat yourself or a loved one today.
-    </p>
-    <button className="hero-btn">Shop Now</button>
-  </div>
-</section>
+      <section className="hero">
+        <div className="hero-content">
+          <h1>
+            Order your favorite cake here and make
+            <br /> every moment extra special!
+          </h1>
+          <p>
+            Celebrate life’s sweetest moments with a delicious cake that brings
+            joy to every occasion. Whether big or small, a cake makes happiness
+            even more irresistible—treat yourself or a loved one today.
+          </p>
+          <button className="hero-btn">Shop Now</button>
+        </div>
+      </section>
 
       {/* Menu categories */}
       <ExploreMenu category={category} setCategory={setCategory} />

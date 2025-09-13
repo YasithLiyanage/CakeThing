@@ -15,10 +15,27 @@ const AddCake = () => {
     category: "Butter Cake",
   });
 
+  // toppings state
+  const [toppings, setToppings] = useState({
+    birthdayCap: 0,
+    birthdayCandle: 0,
+  });
+
+  const toppingPrice = 50; // LKR 50 for each topping
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setData((data) => ({ ...data, [name]: value }));
+  };
+
+  const handleToppingChange = (name, action) => {
+    setToppings((prev) => {
+      let newCount = prev[name];
+      if (action === "inc") newCount++;
+      if (action === "dec" && newCount > 0) newCount--;
+      return { ...prev, [name]: newCount };
+    });
   };
 
   const onSubmitHandler = async (event) => {
@@ -31,6 +48,9 @@ const AddCake = () => {
     formData.append("category", data.category);
     formData.append("image", image);
 
+    // include toppings in request
+    formData.append("toppings", JSON.stringify(toppings));
+
     try {
       const response = await axios.post(url, formData);
       if (response.data.success) {
@@ -42,6 +62,7 @@ const AddCake = () => {
           category: "Butter Cake",
         });
         setImage(false);
+        setToppings({ birthdayCap: 0, birthdayCandle: 0 });
         toast.success("Cake added successfully!");
       }
     } catch (error) {
@@ -184,6 +205,48 @@ const AddCake = () => {
                   required
                   min="1"
                 />
+              </div>
+            </div>
+
+            {/* Toppings Section */}
+            <div className="toppings-section">
+              <h3 className="section-title">Extra Toppings (LKR 50 each)</h3>
+              <div className="topping-item">
+                <span>🎉 Birthday Cap</span>
+                <div className="topping-controls">
+                  <button
+                    type="button"
+                    onClick={() => handleToppingChange("birthdayCap", "dec")}
+                  >
+                    -
+                  </button>
+                  <span>{toppings.birthdayCap}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleToppingChange("birthdayCap", "inc")}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div className="topping-item">
+                <span>🕯️ Birthday Candle</span>
+                <div className="topping-controls">
+                  <button
+                    type="button"
+                    onClick={() => handleToppingChange("birthdayCandle", "dec")}
+                  >
+                    -
+                  </button>
+                  <span>{toppings.birthdayCandle}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleToppingChange("birthdayCandle", "inc")}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
           </div>

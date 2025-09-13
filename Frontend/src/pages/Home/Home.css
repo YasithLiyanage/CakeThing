@@ -1,15 +1,59 @@
-.home {
-  min-height: 100vh;
+.hero {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* keep text aligned left */
+  padding: 3rem 2rem;
+  min-height: 80vh;
+  color: #fff;
+
+  /* Background image */
+  background-image: url("../../assets/frontend_assets/header_img.png"); 
+  background-size:cover;      /* make it fill the section */
+  background-position: center; /* center the image */
+  background-repeat: no-repeat;
+  position: relative;
 }
 
-.home .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+/* Optional: overlay for better readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* dark overlay */
 }
 
-.home .footer {
-  margin-top: auto;
+.hero-content {
+  position: relative; /* keep text above overlay */
+  max-width: 600px;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #eee;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.hero-btn {
+  padding: 0.9rem 2rem;
+  background: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+  background: #d62828;
 }
